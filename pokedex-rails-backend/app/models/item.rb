@@ -16,4 +16,8 @@ class Item < ApplicationRecord
              primary_key: :id,
              foreign_key: :pokemon_id,
              class_name: :Pokemon
+
+  validates :name, length: {in 3...255}
+  validates :price, numericality: {greater_than_or_equal_to: 0}
+  
 end
