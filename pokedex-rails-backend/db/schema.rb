@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_190020) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_191148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "pokemon_id", null: false
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "happiness", null: false
+    t.string "image_url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pokemon_id"], name: "index_items_on_pokemon_id"
+  end
 
   create_table "pokemons", force: :cascade do |t|
     t.integer "number", null: false
@@ -28,4 +39,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_190020) do
     t.index ["number"], name: "index_pokemons_on_number", unique: true
   end
 
+  add_foreign_key "items", "pokemons"
 end

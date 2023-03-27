@@ -14,4 +14,9 @@
 #  updated_at :datetime         not null
 #
 class Pokemon < ApplicationRecord
+  has_many :items,
+           primary_key: :id,
+           foreign_key: :pokemon_id,
+           class_Name: :Item,
+           dependent: :destroy
 end
